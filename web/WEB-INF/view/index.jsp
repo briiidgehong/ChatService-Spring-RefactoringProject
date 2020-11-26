@@ -15,14 +15,14 @@
 	<link rel="stylesheet" href="css/bootstrap.css"> <!--css 파일 불러오기  -->
 	<link rel="stylesheet" href="css/custom.css"> <!--css 파일 불러오기  -->
 	
-	<title>JSP Ajax 실시간 회원제 채팅 서비스</title>
+	<title>Chatting Service</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> <!--ajax 를 위해서 공식사이트에서 제공하는 제이쿼리를 링크로 가져온다.  -->
 	<script src="js/bootstrap.js"></script> <!--마찬가지로 우리가 받았던 부트스트랩 안의 js 페이지도 가져온다. -->
 	<script type="text/javascript">
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "./ChatUnreadServlet",
+				url: "chat/ChatUnreadServlet",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},
@@ -48,7 +48,7 @@
 	
 </head>
 <body>
-	<nav class="navbar navbar-default"> <!-- 디폴트로 부트스트랩의 네브바 컴포넌트를 사용한다.   -->
+	<nav class="navbar navbar-default"> <!-- 부트스트랩의 네브바 컴포넌트 -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -58,7 +58,7 @@
 					<span class="icon-bar"></span>	
 					
 				</button>
-				<a class="navbar-brand" href="index.jsp"> 실시간 회원제 채팅 서비스 </a>
+				<a class="navbar-brand" href="index.jsp"> Chat Service </a>
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
