@@ -1,4 +1,4 @@
-package board;
+package index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ public class IndexController{
 
     @RequestMapping({"/index", "/"})
     public String tempfunction() {
-        System.out.println("main Page");
-        return "index";
+        System.out.println("main Page 메인 페이지");
+        return "login";
     }
 }

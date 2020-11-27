@@ -15,8 +15,8 @@
     @Component @Controller @Service @Repository 등의 Annotation이 존재해야 bean을 생성할 수 있다.
     이것의 장점 중 하나는 @Autowired와 @Qualifier Annotation을 인식할 수 있다.
     component-scan을 선언했다면 context:annotation-config를 선언할 필요가 없다. -->
-    <context:component-scan base-package="board, chat, user"/>
-    <mvc:annotation-driven/>
+    <context:component-scan base-package="board, chat, user, index"/>
+
     <!-- view resolver 설정 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"></property>

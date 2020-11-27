@@ -2,6 +2,7 @@ package chat;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ import java.net.URLDecoder;
 public class ChatUnreadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@RequestMapping("/ChatUnreadServlet")
+	@RequestMapping(value = "/ChatUnreadServlet", method = RequestMethod.POST)
 	public void myFunction(){
 		System.out.println("과연??");
 	}
