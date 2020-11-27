@@ -4,9 +4,12 @@
 <html>
 <%
 	String userID = null; //세션관리
-	if (session.getAttribute("userID") != null) { // 세션값이 존재하지 않는다면
+	if (session.getAttribute("userID") != null) { // 세션값이 존재한다면
 		userID = (String) session.getAttribute("userID"); // 가져와라
+		System.out.printf(userID);
 	}
+	System.out.println("sessionID");
+
 %>
 
 <head>
@@ -22,7 +25,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "chat/ChatUnreadServlet",
+				url: "./ChatUnreadServlet",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},
