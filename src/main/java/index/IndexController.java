@@ -11,8 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController{
 
     @RequestMapping({"/index", "/"})
-    public String tempfunction() {
+    public String indexfunction() {
         System.out.println("main Page 메인 페이지");
+        return "index";
+    }
+
+    @RequestMapping("/login")
+    public String loginfunction() {
+        System.out.println("login 페이지");
         return "login";
+    }
+
+    @RequestMapping("/chat")
+    public String chatfunction() {
+        System.out.println("chat 페이지");
+        return "chat";
     }
 }

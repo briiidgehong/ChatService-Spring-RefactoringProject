@@ -5,10 +5,15 @@
 
 
 <head>
-	<%@include file="/static/header.jsp"%><!-- header -->
+	<%
+		String userID = null; //세션관리
+		if (session.getAttribute("userID") != null) { // 세션값이 존재한다면
+			response.sendRedirect("/box");
+		}else{
+			response.sendRedirect("/login");
+		}
+	%>
 </head>
 <body>
-	<%@include file="/static/body-h.jsp"%><!-- body-h -->
-	<%@include file="/static/body-f.jsp"%><!-- body-h -->
 </body>
 </html>

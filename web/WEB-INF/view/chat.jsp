@@ -11,6 +11,7 @@
 		if (request.getParameter("toID") != null){
 			toID=(String) request.getParameter("toID");
 		}
+		/*
 		if(userID == null) {
 			session.setAttribute("messageType", "오류메시지");
 			session.setAttribute("messageContent","현재 로그인이 되어 있지 않습니다.");
@@ -29,7 +30,7 @@
 			response.sendRedirect("index.jsp");
 			return;
 		}
-		
+		*/
 		String fromProfile=new UserDAO().getProfile(userID);
 		String toProfile=new UserDAO().getProfile(toID);
 	%>
@@ -184,9 +185,10 @@
 	<%@include file="/static/body-f.jsp"%><!-- body-h -->
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-		chatListFunction('0');
-		getInfiniteChat();
+		$(document).ready(function() {
+			chatListFunction('0');
+			getInfiniteChat();
+		}
 	</script>
 </body>
 </html>
