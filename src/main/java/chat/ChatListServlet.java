@@ -1,5 +1,8 @@
 package chat;
 
+import chat.dao.ChatDAO;
+import chat.dto.ChatDTO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

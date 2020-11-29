@@ -1,4 +1,4 @@
-package chat;
+package chat.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,6 @@
-package chat;
+package chat.dao;
+
+import chat.dto.ChatDTO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

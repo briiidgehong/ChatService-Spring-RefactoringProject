@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="user.UserDTO" %>
-<%@ page import="user.UserDAO" %>
-<%@ page import="board.BoardDTO" %>
-<%@ page import="board.BoardDAO" %>
+<%@ page import="user.dto.UserDTO" %>
+<%@ page import="user.dao.UserDAO" %>
+<%@ page import="board.dto.BoardDTO" %>
+<%@ page import="board.dao.BoardDAO" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>

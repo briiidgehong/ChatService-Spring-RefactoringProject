@@ -1,4 +1,7 @@
-package board;
+package board.dao;
+
+import board.dto.BoardDTO;
+import org.springframework.stereotype.Repository;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -8,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+@Repository
 public class BoardDAO {
 
 	DataSource dataSource;

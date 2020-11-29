@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="board.BoardDAO" %>
-<%@ page import="board.BoardDTO" %>
+<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dto.BoardDTO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->

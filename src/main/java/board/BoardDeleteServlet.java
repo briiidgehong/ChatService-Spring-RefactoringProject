@@ -1,5 +1,8 @@
 package board;
 
+import board.dao.BoardDAO;
+import board.dto.BoardDTO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

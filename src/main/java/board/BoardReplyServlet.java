@@ -1,5 +1,7 @@
 package board;
 
+import board.dao.BoardDAO;
+import board.dto.BoardDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 

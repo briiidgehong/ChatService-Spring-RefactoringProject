@@ -1,5 +1,9 @@
-package user;
+package user.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import user.dto.UserDTO;
+import org.apache.ibatis.session.SqlSession;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -7,22 +11,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
+@Repository
 //DATA ACCESS OBJECT 데이터 접근 객체 -> 실질적으로 데이터베이스에 접근해서 데이터를 가져오거나 쓰거나 하는 역할
 public class UserDAO {
+/*
 
+	private sqlSession session;
+
+	public void findUser() {
+
+	}
+*/
 	//커넥션풀 이용
 	DataSource dataSource;
 	
 	public UserDAO() {
 		try {
-			
-			/*
-			InitialContext initialContext = new InitialContext();
-			Context envContext = (Context) initialContext.lookup("java:/comp/env");
-			dataSource = (DataSource) envContext.lookup("jdbc/UserChat");
-			*/
-			
 			Context context = new InitialContext();
 			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/UserChat");
 			
@@ -257,5 +261,5 @@ public class UserDAO {
 						  }
 		return "http://localhost:8080/UserChat/images/icon.PNG";
 	}
-	
+
 }
