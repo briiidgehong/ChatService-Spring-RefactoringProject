@@ -14,14 +14,62 @@ import java.sql.ResultSet;
 @Repository
 //DATA ACCESS OBJECT 데이터 접근 객체 -> 실질적으로 데이터베이스에 접근해서 데이터를 가져오거나 쓰거나 하는 역할
 public class UserDAO {
-/*
 
-	private sqlSession session;
+	private SqlSession sqlSession;
 
-	public void findUser() {
-
+	@Autowired
+	public UserDAO(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
 	}
-*/
+
+	public UserDTO getUser2()
+	{
+		System.out.println("getuser 들어옴");
+		String id = "jyjy2";
+		return sqlSession.selectOne("userMapper.select", id);
+	}
+
+	/*
+	public UserDTO getUser(String userID) { //중복체크
+		UserDTO user = new UserDTO();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String SQL= "SELECT * FROM USER WHERE userID =?";
+		try { //실제 하고싶은 코드 들어간다.
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user.setUserID(userID);
+				user.setUserPassword(rs.getString("userPassword"));
+				user.setUserName(rs.getString("userName"));
+				user.setUserAge(rs.getInt("userAge"));
+				user.setUserGender(rs.getString("userGender"));
+				user.setUserEmail(rs.getString("userEmail"));
+				user.setUserProfile(rs.getString("userProfile"));
+
+			}
+
+		}	catch(Exception e) {
+			e.printStackTrace();
+		} finally { // 다 썼으면 자원해제
+			try {
+				if(rs !=null) rs.close();
+				if(pstmt !=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return user; //데이터베이스 오류가 발생한 경우 알려준다.
+	}
+
+	 */
+
+
+
 	//커넥션풀 이용
 	DataSource dataSource;
 	

@@ -7,7 +7,7 @@
     <select id="select" parameterType="String" resultType="userDto">
         select *
         from user
-
+        where USERID = #{id}
     </select>
     <!--
     <select id="select" parameterType="String" resultType="userDto">

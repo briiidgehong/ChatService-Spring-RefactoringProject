@@ -1,14 +1,13 @@
 package user.service;
 
-import lombok.Getter;
-import lombok.Setter;
+
 import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import user.dao.UserDAO;
+import user.dto.UserDTO;
 
-@Getter
-@Setter
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -20,7 +19,9 @@ public class UserServiceImpl implements UserService {
     }
 
     public void FindUser() {
-
+        System.out.println("finduser 들어옴");
+        UserDTO user2 = userDAO.getUser2();
+        System.out.println(user2.getUserEmail());
     }
 
     public void LoginUser() {

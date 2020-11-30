@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -14,8 +15,19 @@
     <!-- mybatis SqlSessionFactoryBean -->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:mybatis/mybatisConfig.xml"></property>
     </bean>
+    <!--
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    @Autowired
+	public UserDAO(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
+	위의 DI 가 가능하도록 sqlSession Template bean 생성
+    -->
     <bean class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSession" />
+        <constructor-arg name="sqlSessionFactory" ref="sqlSession"/>
     </bean>
 </beans>
