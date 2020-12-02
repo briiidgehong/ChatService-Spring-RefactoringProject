@@ -1,6 +1,6 @@
 package chat;
 
-import chat.dao.ChatDAO;
+import chat.dao.ChatDAOImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +39,7 @@ public class ChatUnreadServlet extends HttpServlet {
 				return;
 			}
 			
-			response.getWriter().write(new ChatDAO().getAllUnreadChat(userID) + "");
+			response.getWriter().write(new ChatDAOImpl().getAllUnreadChat(userID) + "");
 		}
 	}
 

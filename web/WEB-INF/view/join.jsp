@@ -12,7 +12,7 @@
 			success 성공적으로 값을 보냈다면 result에 return 값이 담긴다.*/
 			$.ajax({
 							type: 'POST',
-							url: './UserRegisterCheckServlet',
+							url: '/user/registercheck',
 							data: {userID : userID},
 							success: function(result){
 								if(result == 1) {
@@ -52,7 +52,7 @@
 	<%@include file="/static/body-h.jsp"%><!-- body-h -->
 
 	<div class="container">
-		<form method="post" action="./UserRegisterServlet">
+		<form method="post" action="/user/register">
 			<table class="table table=bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -63,7 +63,7 @@
 					<tr>
 						<td style="width: 110px;"><h5>아이디</h5></td>
 						<td><input class="form-control" type="text" id="userID" name="userID" maxlength="20" placeholder="아이디를 입력하세요."></td>
-						<td style="width: 110px;"><button "btn btn-primary" onclick="registerCheckFunction();" type="button">중복체크</button></td>
+						<td style="width: 110px;"><button class="btn btn-primary" onclick="registerCheckFunction();" type="button">중복체크</button></td>
 					</tr>
 
 					<tr>

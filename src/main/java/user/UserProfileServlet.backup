@@ -2,7 +2,7 @@ package user;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import user.dao.UserDAO;
+import user.dao.UserDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +47,7 @@ public class UserProfileServlet extends HttpServlet {
 		if(file != null) {
 			String ext = file.getName().substring(file.getName().lastIndexOf(".") +1);
 			if(ext.equals("jpg") || ext.equals("png") || ext.equals("gif")) {
-				String prev = new UserDAO().getUser(userID).getUserProfile();
+				String prev = new UserDAOImpl().getUser(userID).getUserProfile();
 				File prevFile = new File(savePath + "/" + prev);
 				if(prevFile.exists()) {
 					prevFile.delete();
@@ -64,7 +64,7 @@ public class UserProfileServlet extends HttpServlet {
 			}
 					
 		}
-		new UserDAO().profile(userID,fileName);
+		new UserDAOImpl().profile(userID,fileName);
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent","성공적으로 프로필이 변경되었습니다.");
 		response.sendRedirect("index.jsp");

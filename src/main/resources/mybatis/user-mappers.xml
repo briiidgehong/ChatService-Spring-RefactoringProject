@@ -4,11 +4,37 @@
 
 <mapper namespace="userMapper">
 
-    <select id="select" parameterType="String" resultType="userDto">
+    <select id="getUser" parameterType="String" resultType="userDto">
         select *
         from user
-        where USERID = #{id}
+        where USERID = #{userID}
     </select>
+
+    <select id="getCheck" parameterType="String" resultType="int">
+        select COUNT(*)
+        from user
+        where USERID = #{userID}
+    </select>
+
+    <insert id="insertUser" parameterType="userDto">
+		insert into USER
+		(userID, userPassword, userName, userAge, userGender, userEmail, userProfile)
+		values(#{userID},#{userPassword} ,#{userName}, #{userAge},
+		#{userGender},#{userEmail}, #{userProfile})
+	</insert>
+
+    <update id="updateUser" parameterType="userDto">
+		UPDATE USER
+		SET userPassword=#{userPassword}, userName=#{userName}, userAge=#{userAge}, userGender=#{userGender}, userEmail=#{userEmail}
+		WHERE userID=#{userID}
+	</update>
+
+    <update id="updateProfile" parameterType="hashMap">
+		UPDATE USER
+		SET userProfile=#{userProfile}
+		WHERE userID=#{userID}
+	</update>
+
     <!--
     <select id="select" parameterType="String" resultType="userDto">
         select name, id

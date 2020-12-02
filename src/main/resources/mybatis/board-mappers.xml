@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="userMapper">
+<mapper namespace="boardMapper">
 
-    <select id="getUser" parameterType="String" resultType="userDto">
+
+
+<!--
+    <select id="getUser" parameterType="String" resultType="chatDto">
         select *
         from user
         where USERID = #{userID}
@@ -34,33 +37,5 @@
 		SET userProfile=#{userProfile}
 		WHERE userID=#{userID}
 	</update>
-
-    <!--
-    <select id="select" parameterType="String" resultType="userDto">
-        select name, id
-        from test
-        where id = #{id}
-    </select>
-
-    <select id="list" parameterType="String" resultType="userDto">
-        select name, id
-        from test
-    </select>
-
-    <insert id="insert">
-        insert into test (name)
-        values (#{value})
-    </insert>
-
-    <delete id="delete">
-        delete from test
-        where name = #{name}
-    </delete>
-
-    <update id="update" parameterType="dh.test.dto.UserDto">
-        update test
-        set name = #{name}
-        where id = #{id}
-    </update>
-    -->
+-->
 </mapper>

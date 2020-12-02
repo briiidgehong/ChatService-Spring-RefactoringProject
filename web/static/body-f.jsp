@@ -39,6 +39,17 @@
     </div>
 </div>
 
+
+
+<script>
+    $('#messageModal').modal("show");
+</script>
+<%
+        session.removeAttribute("messageContent");
+        session.removeAttribute("messageType");
+    }
+%>
+
 <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center">
@@ -53,7 +64,7 @@
                         확인 메시지
                     </h4>
                 </div>
-                <div id="checkMessage" class="modal-body">
+                <div><h5 id="checkMessage" class="modal-body"></h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
@@ -63,15 +74,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    $('#messageModal').modal("show");
-</script>
-<%
-        session.removeAttribute("messageContent");
-        session.removeAttribute("messageType");
-    }
-%>
 
 <%
     if(userID != null) {

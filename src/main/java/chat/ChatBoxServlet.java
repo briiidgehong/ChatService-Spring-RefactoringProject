@@ -1,22 +1,11 @@
 package chat;
 
-import chat.dao.ChatDAO;
-import chat.dto.ChatDTO;
-import user.dao.UserDAO;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
 
 
 public class ChatBoxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+ /*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
@@ -53,9 +42,9 @@ public class ChatBoxServlet extends HttpServlet {
 			}
 			
 			if(userID.equals(chatList.get(i).getToID())) {
-				userProfile = new UserDAO().getProfile(chatList.get(i).getFromID());
+				userProfile = new UserDAOImpl().getProfile(chatList.get(i).getFromID());
 			} else {
-				userProfile = new UserDAO().getProfile(chatList.get(i).getToID());
+				userProfile = new UserDAOImpl().getProfile(chatList.get(i).getToID());
 			}
 			result.append("[{\"value\": \"" + chatList.get(i).getFromID() + "\"},"); 
 			result.append("{\"value\": \"" + chatList.get(i).getToID() + "\"},"); 
@@ -68,5 +57,5 @@ public class ChatBoxServlet extends HttpServlet {
 		result.append("], \"last\":\"" + chatList.get(chatList.size() -1).getChatID() + "\"}");
 		return result.toString();
 	}
-
+*/
 }

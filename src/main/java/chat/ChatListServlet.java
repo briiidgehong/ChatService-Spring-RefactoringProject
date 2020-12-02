@@ -1,6 +1,6 @@
 package chat;
 
-import chat.dao.ChatDAO;
+import chat.dao.ChatDAOImpl;
 import chat.dto.ChatDTO;
 
 import javax.servlet.ServletException;
@@ -42,7 +42,7 @@ public class ChatListServlet extends HttpServlet {
 		public String getTen(String fromID, String toID) {
 			StringBuffer result= new StringBuffer("");
 			result.append("{\"result\":["); 
-			ChatDAO chatDAO = new ChatDAO();
+			ChatDAOImpl chatDAO = new ChatDAOImpl();
 			ArrayList<ChatDTO> chatList = chatDAO.getChatListByRecent(fromID, toID, 100);
 			if(chatList.size() == 0) return "";
 			
@@ -61,7 +61,7 @@ public class ChatListServlet extends HttpServlet {
 		public String getID(String fromID, String toID, String chatID) {
 			StringBuffer result= new StringBuffer("");
 			result.append("{\"result\":["); 
-			ChatDAO chatDAO = new ChatDAO();
+			ChatDAOImpl chatDAO = new ChatDAOImpl();
 			ArrayList<ChatDTO> chatList = chatDAO.getChatListByID(fromID, toID, chatID);
 			if(chatList.size() == 0) return "";
 			for(int i=0;i<chatList.size();i++) {

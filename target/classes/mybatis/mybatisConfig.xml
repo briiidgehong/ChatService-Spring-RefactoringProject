@@ -7,9 +7,14 @@
     <!-- dto - xml mapping -->
     <typeAliases>
         <typeAlias type="user.dto.UserDTO" alias="userDto"/>
+        <typeAlias type="chat.dto.ChatDTO" alias="chatDto"/>
+        <typeAlias type="board.dto.BoardDTO" alias="boardDto"/>
+
     </typeAliases>
 
     <mappers>
         <mapper resource="mybatis/user-mappers.xml"/>
+        <mapper resource="mybatis/chat-mappers.xml"/>
+        <mapper resource="mybatis/board-mappers.xml"/>
     </mappers>
 </configuration>

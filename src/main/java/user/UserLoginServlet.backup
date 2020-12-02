@@ -1,6 +1,6 @@
 package user;
 
-import user.dao.UserDAO;
+import user.dao.UserDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +25,7 @@ public class UserLoginServlet extends HttpServlet {
 			return;
 		}
 		
-		int result = new UserDAO().login(userID, userPassword);
+		int result = new UserDAOImpl().login(userID, userPassword);
 		if(result == 1) {
 			request.getSession().setAttribute("userID",userID);
 			request.getSession().setAttribute("messageType", "성공메시지");

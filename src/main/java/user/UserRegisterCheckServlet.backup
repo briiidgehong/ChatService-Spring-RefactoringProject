@@ -1,6 +1,6 @@
 package user;
 
-import user.dao.UserDAO;
+import user.dao.UserDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +19,7 @@ public class UserRegisterCheckServlet extends HttpServlet {
 		
 		String userID = request.getParameter("userID"); //사용자로부터 입력을 받은 userID 를 저장
 		if(userID ==null || userID.equals("")) response.getWriter().write("-1");
-		response.getWriter().write(new UserDAO().registerCheck(userID)+"" ); //사용자에게 결과를 반환 , 문자열 형태로 출력할수 있도록 하기위해 공백 문자열을 추가한다.
+		response.getWriter().write(new UserDAOImpl().registerCheck(userID)+"" ); //사용자에게 결과를 반환 , 문자열 형태로 출력할수 있도록 하기위해 공백 문자열을 추가한다.
 	}
 
 }

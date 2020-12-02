@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="user.dto.UserDTO" %>
-<%@ page import="user.dao.UserDAO" %>
+<%@ page import="user.dao.UserDAOImpl" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
@@ -15,7 +15,7 @@
 			return;
 		}
 
-		UserDTO user = new UserDAO().getUser(userID);
+		UserDTO user = new UserDAOImpl().getUser(userID);
 	%>
 	<script type="text/javascript">
 		function passwordCheckFunction() {
@@ -35,7 +35,7 @@
 
 
 	<div class="container">
-		<form method="post" action="./UserProfileServlet" enctype="multipart/form-data">
+		<form method="post" action="/user/profile" enctype="multipart/form-data">
 			<table class="table table=bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

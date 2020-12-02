@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="user.dao.UserDAO"%>
+<%@ page import="user.dao.UserDAOImpl"%>
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
 <head>
@@ -31,8 +31,8 @@
 			return;
 		}
 		*/
-		String fromProfile=new UserDAO().getProfile(userID);
-		String toProfile=new UserDAO().getProfile(toID);
+		String fromProfile=new UserDAOImpl().getProfile(userID);
+		String toProfile=new UserDAOImpl().getProfile(toID);
 	%>
 	<script type="text/javascript">
 	

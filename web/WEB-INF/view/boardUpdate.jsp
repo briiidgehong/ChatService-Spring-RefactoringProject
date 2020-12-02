@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="user.dto.UserDTO" %>
-<%@ page import="user.dao.UserDAO" %>
+<%@ page import="user.dao.UserDAOImpl" %>
 <%@ page import="board.dto.BoardDTO" %>
 <%@ page import="board.dao.BoardDAO" %>
 
@@ -17,7 +17,7 @@
 			return;
 		}
 
-		UserDTO user = new UserDAO().getUser(userID);
+		UserDTO user = new UserDAOImpl().getUser(userID);
 		String boardID = request.getParameter("boardID");
 		if(boardID == null || boardID.equals("")) {
 			session.setAttribute("messageType", "오류메시지");

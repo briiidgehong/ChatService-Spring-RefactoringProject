@@ -1,6 +1,6 @@
 package chat;
 
-import chat.dao.ChatDAO;
+import chat.dao.ChatDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +41,7 @@ public class ChatSubmitServlet extends HttpServlet {
 			}
 			
 			chatContent = URLDecoder.decode(chatContent, "UTF-8");
-			response.getWriter().write(new ChatDAO().submit(fromID, toID, chatContent) + "");
+			response.getWriter().write(new ChatDAOImpl().submit(fromID, toID, chatContent) + "");
 		}
 	}
 

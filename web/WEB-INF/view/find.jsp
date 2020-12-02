@@ -12,7 +12,7 @@
 			var userID = $('#findID').val();
 			$.ajax({
 				type: "POST",
-				url: './UserFindServlet',
+				url: '/user/find',
 				data: {userID: userID},
 				success: function(result) {
 					if(result== -1){
