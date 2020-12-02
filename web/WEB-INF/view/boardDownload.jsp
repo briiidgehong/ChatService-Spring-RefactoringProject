@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dao.BoardDAOImpl" %>
 <%@ page import="java.io.*" %>
 <%@ page import="java.text.*" %>
 <%@ page import="java.lang.*" %>
@@ -25,7 +25,7 @@
 		String savePath = root + "upload";
 		String fileName = "";
 		String realFile = "";
-		BoardDAO boardDAO = new BoardDAO();
+		BoardDAOImpl boardDAO = new BoardDAOImpl();
 		fileName = boardDAO.getFile(boardID);
 		realFile = boardDAO.getRealFile(boardID);
 		if(fileName.equals("") || realFile.equals("")) {

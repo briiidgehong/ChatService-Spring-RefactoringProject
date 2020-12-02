@@ -49,7 +49,7 @@
 			var chatContent = $('#chatContent').val();
 			$.ajax({
 				type: "POST",
-				url: "./ChatSubmitServlet",
+				url: "/chat/submit",
 				data: {
 					fromID: encodeURIComponent(fromID),
 					toID: encodeURIComponent(toID),
@@ -74,7 +74,7 @@
 			var toID = '<%=toID %>';
 			$.ajax({
 				type : "POST",
-				url : "./ChatListServlet",
+				url : "/chat/list",
 				data : {
 					fromID : encodeURIComponent(fromID),
 					toID : encodeURIComponent(toID),

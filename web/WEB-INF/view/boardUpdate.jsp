@@ -3,7 +3,7 @@
 <%@ page import="user.dto.UserDTO" %>
 <%@ page import="user.dao.UserDAOImpl" %>
 <%@ page import="board.dto.BoardDTO" %>
-<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dao.BoardDAOImpl" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
@@ -26,7 +26,7 @@
 			return;
 		}
 
-		BoardDAO boardDAO = new BoardDAO();
+		BoardDAOImpl boardDAO = new BoardDAOImpl();
 		BoardDTO board = boardDAO.getBoard(boardID);
 		if(!userID.equals(board.getUserID())) {
 			session.setAttribute("messageType", "오류메시지");
@@ -53,7 +53,7 @@
 	<%@include file="/static/body-h.jsp"%><!-- body-h -->
 
 	<div class="container">
-		<form method="post" action="./BoardUpdateServlet" enctype="multipart/form-data">
+		<form method="post" action="/BoardUpdate" enctype="multipart/form-data">
 			<table class="table table=bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

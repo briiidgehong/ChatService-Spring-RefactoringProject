@@ -2,10 +2,9 @@ package chat;
 
 import javax.servlet.http.HttpServlet;
 
-
 public class ChatBoxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- /*
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
@@ -57,5 +56,5 @@ public class ChatBoxServlet extends HttpServlet {
 		result.append("], \"last\":\"" + chatList.get(chatList.size() -1).getChatID() + "\"}");
 		return result.toString();
 	}
-*/
+
 }

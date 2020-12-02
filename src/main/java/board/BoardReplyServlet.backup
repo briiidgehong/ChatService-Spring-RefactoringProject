@@ -1,6 +1,6 @@
 package board;
 
-import board.dao.BoardDAO;
+import board.dao.BoardDAOImpl;
 import board.dto.BoardDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -67,7 +67,7 @@ public class BoardReplyServlet extends HttpServlet {
 					
 		}
 		
-		BoardDAO boardDAO = new BoardDAO();
+		BoardDAOImpl boardDAO = new BoardDAOImpl();
 		BoardDTO parent = boardDAO.getBoard(boardID);
 		boardDAO.replyUpdate(parent);
 		boardDAO.reply(userID, boardTitle, boardContent, boardFile, boardRealFile, parent);

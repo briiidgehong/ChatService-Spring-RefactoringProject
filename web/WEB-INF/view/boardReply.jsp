@@ -50,7 +50,7 @@
 	<%@include file="/static/body-h.jsp"%><!-- body-h -->
 
 	<div class="container">
-		<form method="post" action="./BoardReplyServlet" enctype="multipart/form-data">
+		<form method="post" action="/BoardReply" enctype="multipart/form-data">
 			<table class="table table=bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

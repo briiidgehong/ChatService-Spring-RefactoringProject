@@ -5,37 +5,108 @@
 <mapper namespace="boardMapper">
 
 
-
-<!--
-    <select id="getUser" parameterType="String" resultType="chatDto">
-        select *
-        from user
-        where USERID = #{userID}
-    </select>
-
-    <select id="getCheck" parameterType="String" resultType="int">
-        select COUNT(*)
-        from user
-        where USERID = #{userID}
-    </select>
-
-    <insert id="insertUser" parameterType="userDto">
-		insert into USER
-		(userID, userPassword, userName, userAge, userGender, userEmail, userProfile)
-		values(#{userID},#{userPassword} ,#{userName}, #{userAge},
-		#{userGender},#{userEmail}, #{userProfile})
+    <insert id="write" parameterType="hashMap">
+        INSERT INTO BOARD
+        SELECT #{userID}, IFNULL((SELECT MAX(boardID) + 1 FROM BOARD), 1), #{boardTitle}, #{boardContent}, now(), 0, #{boardFile}, #{boardRealFile}, IFNULL((SELECT MAX(boardGroup) + 1 FROM BOARD), 0), 0, 0, 1
 	</insert>
 
-    <update id="updateUser" parameterType="userDto">
-		UPDATE USER
-		SET userPassword=#{userPassword}, userName=#{userName}, userAge=#{userAge}, userGender=#{userGender}, userEmail=#{userEmail}
-		WHERE userID=#{userID}
-	</update>
 
-    <update id="updateProfile" parameterType="hashMap">
-		UPDATE USER
-		SET userProfile=#{userProfile}
-		WHERE userID=#{userID}
-	</update>
--->
+    <select id="getBoard" parameterType="String" resultType="boardDto">
+        SELECT *
+        FROM BOARD
+        WHERE boardID =#{boardID}
+    </select>
+
+    <select id="getList" parameterType="hashMap" resultType="boardDto">
+        SELECT * FROM BOARD WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam1} AND boardGroup <= (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam2} ORDER BY boardGroup DESC, boardSequence ASC
+    </select>
+
+    <update id="hit" parameterType="String">
+        UPDATE BOARD
+        SET boardHit = boardHit + 1
+        WHERE boardID = #{boardID}
+    </update>
+
+    <select id="getFile" parameterType="String" resultType="String">
+        SELECT boardFile
+        FROM BOARD
+        WHERE boardID = #{boardID}
+    </select>
+
+    <select id="getRealFile" parameterType="String" resultType="String">
+        SELECT boardRealFile
+        FROM BOARD
+        WHERE boardID = #{boardID}
+    </select>
+
+    <update id="update" parameterType="hashMap">
+        UPDATE BOARD
+        SET boardTitle =#{boardTitle}, boardContent =#{boardContent}, boardFile =#{boardFile}, boardRealFile =#{boardRealFile}
+        WHERE boardID =#{boardID}
+    </update>
+
+    <update id="delete" parameterType="String">
+        UPDATE BOARD
+        SET boardAvailable = 0
+        WHERE boardID =#{boardID}
+    </update>
+
+    <insert id="reply" parameterType="hashMap">
+        INSERT INTO BOARD
+        SELECT #{userID}, IFNULL((SELECT MAX(boardID) + 1
+        FROM BOARD), 1), #{boardTitle}, #{boardContent}, now(), 0, #{boardFile}, #{boardRealFile}, #{parentBoardGroup}, #{parentBoardSequence}, #{parentBoardLevel}, 1
+    </insert>
+
+
+    <update id="replyUpdate" parameterType="hashMap">
+        UPDATE BOARD
+        SET boardSequence = boardSequence + 1
+        WHERE boardGroup = #{parentBoardGroup} AND boardSequence > #{parentBoardSequence}
+    </update>
+
+    <select id="nextPage" parameterType="String" resultType="boardDto">
+        SELECT *
+        FROM BOARD
+        WHERE boardGroup >= #{pageNumber}
+    </select>
+
+    <select id="targetPage" parameterType="String" resultType="int">
+        SELECT COUNT(boardGroup)
+        FROM BOARD
+        WHERE boardGroup > #{pageNumber}
+    </select>
+
+
+    <!--
+        <select id="getUser" parameterType="String" resultType="chatDto">
+            select *
+            from user
+            where USERID = #{userID}
+        </select>
+
+        <select id="getCheck" parameterType="String" resultType="int">
+            select COUNT(*)
+            from user
+            where USERID = #{userID}
+        </select>
+
+        <insert id="insertUser" parameterType="userDto">
+            insert into USER
+            (userID, userPassword, userName, userAge, userGender, userEmail, userProfile)
+            values(#{userID},#{userPassword} ,#{userName}, #{userAge},
+            #{userGender},#{userEmail}, #{userProfile})
+        </insert>
+
+        <update id="updateUser" parameterType="userDto">
+            UPDATE USER
+            SET userPassword=#{userPassword}, userName=#{userName}, userAge=#{userAge}, userGender=#{userGender}, userEmail=#{userEmail}
+            WHERE userID=#{userID}
+        </update>
+
+        <update id="updateProfile" parameterType="hashMap">
+            UPDATE USER
+            SET userProfile=#{userProfile}
+            WHERE userID=#{userID}
+        </update>
+    -->
 </mapper>

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class ChatServiceImpl {
+public class ChatServiceImpl implements ChatService{
 
     private ChatDAO chatDAO;
 

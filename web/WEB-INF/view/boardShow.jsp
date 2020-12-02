@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dao.BoardDAOImpl" %>
 <%@ page import="board.dto.BoardDTO" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
@@ -28,7 +28,7 @@
 			return;
 		}
 
-		BoardDAO boardDAO = new BoardDAO();
+		BoardDAOImpl boardDAO = new BoardDAOImpl();
 		BoardDTO board = boardDAO.getBoard(boardID);
 		if(board.getBoardAvailable() == 0) {
 			session.setAttribute("messageType", "오류메시지");
@@ -90,7 +90,7 @@
 						if(userID.equals(board.getUserID())) {
 					%>
 						<a href="boardUpdate.jsp?boardID=<%= board.getBoardID() %>" class="btn btn-primary" type="submit">수정</a>
-						<a href="BoardDeleteServlet?boardID=<%= board.getBoardID() %>" class="btn btn-primary" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+						<a href="BoardDelete?boardID=<%= board.getBoardID() %>" class="btn btn-primary" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
 					<%
 						}
 					%>

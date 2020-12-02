@@ -17,7 +17,7 @@
     function getUnread() {
         $.ajax({
             type: "POST",
-            url: "./ChatUnreadServlet",
+            url: "/chat/unread",
             data: {
                 userID: encodeURIComponent('<%= userID %>'),
             },

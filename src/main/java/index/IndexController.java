@@ -41,8 +41,26 @@ public class IndexController{
     }
 
     @RequestMapping("/box")
-    public String boxfunction() {
+    public String boxforwarding() {
         System.out.println("box 페이지");
         return "box";
+    }
+
+    @RequestMapping("/boardView")
+    public String boardViewforwarding() {
+        System.out.println("boardView 페이지");
+        return "boardView";
+    }
+
+    @RequestMapping("/profileUpdate")
+    public String profileUpdateforwarding() {
+        System.out.println("profileUpdate 페이지");
+        return "profileUpdate";
+    }
+
+    @RequestMapping("/boardWrite")
+    public String boardWriteforwarding() {
+        System.out.println("boardWrite 페이지");
+        return "boardWrite";
     }
 }

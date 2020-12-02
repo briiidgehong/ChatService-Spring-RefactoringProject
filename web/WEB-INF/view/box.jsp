@@ -12,7 +12,7 @@
 			var userID = '<%= userID %>';
 			$.ajax({
 				type: "POST",
-				url: "./ChatBoxServlet",
+				url: "/chat/box",
 				data: {
 					userID: encodeURIComponent(userID),
 				},

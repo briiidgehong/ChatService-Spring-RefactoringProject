@@ -1,6 +1,6 @@
 package board;
 
-import board.dao.BoardDAO;
+import board.dao.BoardDAOImpl;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -59,7 +59,7 @@ public class BoardWriteServlet extends HttpServlet {
 			boardRealFile=file.getName();
 					
 		}
-		BoardDAO boardDAO = new BoardDAO();
+		BoardDAOImpl boardDAO = new BoardDAOImpl();
 		boardDAO.write(userID, boardTitle, boardContent, boardFile, boardRealFile);
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent","성공적으로 게시물이 작성되었습니다.");

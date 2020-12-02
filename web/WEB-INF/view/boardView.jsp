@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dao.BoardDAOImpl" %>
 <%@ page import="board.dto.BoardDTO" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -32,7 +32,7 @@
 			return;
 
 		}
-		ArrayList<BoardDTO> boardList = new BoardDAO().getList(pageNumber);
+		ArrayList<BoardDTO> boardList = new BoardDAOImpl().getList(pageNumber);
 	%>
 </head>
 <body>
@@ -100,7 +100,7 @@
 				<%
 					int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1 ;
 					if(Integer.parseInt(pageNumber) % 10 == 0 ) startPage -= 10;
-					int targetPage = new BoardDAO().targetPage(pageNumber);
+					int targetPage = new BoardDAOImpl().targetPage(pageNumber);
 
 					if(startPage != 1) {
 				%>
