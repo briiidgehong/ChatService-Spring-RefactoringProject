@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="user.dto.UserDTO" %>
 <%@ page import="user.dao.UserDAOImpl" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="user.service.UserServiceImpl" %>
+<%@ page import="org.springframework.web.context.ContextLoader" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
@@ -15,7 +18,10 @@
 			return;
 		}
 
-		UserDTO user = new UserDAOImpl().getUser(userID);
+		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+		UserServiceImpl us =(UserServiceImpl)context.getBean(UserServiceImpl.class);
+		UserDTO user = us.getUser(userID);
+
 	%>
 	<script type="text/javascript">
 		function passwordCheckFunction() {

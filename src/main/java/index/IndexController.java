@@ -63,4 +63,17 @@ public class IndexController{
         System.out.println("boardWrite 페이지");
         return "boardWrite";
     }
+
+    @RequestMapping("/update")
+    public String updateforwarding() {
+        System.out.println("update 페이지");
+        return "update";
+    }
+
+    @RequestMapping("/logoutAction")
+    public String logoutActionforwarding() {
+        System.out.println("logoutAction 페이지");
+        return "logoutAction";
+    }
+
 }

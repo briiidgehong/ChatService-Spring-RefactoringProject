@@ -10,15 +10,15 @@
             <span class="icon-bar"></span>
 
         </button>
-        <a class="navbar-brand" href="index.jsp"> Chat Service </a>
+        <a class="navbar-brand" href="/index"> Chat Service </a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="index.jsp">메인</a></li>
-            <li><a href="find.jsp">친구찾기</a></li>
-            <li><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>
-            <li><a href="boardView.jsp">자유게시판</a></li>
+            <li class="active"><a href="/index">메인</a></li>
+            <li><a href="/find">친구찾기</a></li>
+            <li><a href="/box">메시지함<span id="unread" class="label label-info"></span></a></li>
+            <li><a href="/boardView">자유게시판</a></li>
         </ul>
 
         <%
@@ -50,9 +50,9 @@
                    aria-expanded="false">회원관리<span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="update.jsp">회원정보수정</a></li>
-                    <li><a href="profileUpdate.jsp">프로필 수정</a></li>
-                    <li><a href="logoutAction.jsp">로그아웃</a></li>
+                    <li><a href="/update">회원정보수정</a></li>
+                    <li><a href="/profileUpdate">프로필 수정</a></li>
+                    <li><a href="/logoutAction">로그아웃</a></li>
                 </ul>
 
             </li>

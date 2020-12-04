@@ -35,9 +35,9 @@
 		}
 		
 		function addBox(lastID, toID, chatContent, chatTime, unread, profile) {
-			$('#boxTable').append('<tr onclick="location.href=\'chat.jsp?toID=' + encodeURIComponent(toID) +'\'">' +
+			$('#boxTable').append('<tr onclick="location.href=\'chat?toID=' + encodeURIComponent(toID) +'\'">' +
 					'<td style="width: 150px;"><h5>' +
-					'<img class="media-object img-circle" style="margin: 0 auto; max-width: 40px; max-height: 40px;" src="' + profile +   '">' +
+					'<img class="media-object img-circle" style="margin: 0 auto; max-width: 40px; max-height: 40px;" src="/upload/' + profile +   '">' +
 					'<h5>' + lastID + '</h5></td>' +
 					'<td>' +
 					'<h5>' + chatContent + '&nbsp;&nbsp;&nbsp;' +
@@ -57,7 +57,7 @@
 		if(userID == null) {
 			session.setAttribute("messageType", "오류메시지");
 			session.setAttribute("messageContent","현재 로그인이 되어 있지 않습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/index");
 			return;
 		}
 	%>

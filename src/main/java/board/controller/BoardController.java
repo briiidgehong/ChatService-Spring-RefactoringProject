@@ -48,7 +48,7 @@ public class BoardController {
             return mView;
         }
 
-        String savePath = request.getRealPath("/upload").replaceAll("\\\\", "/");
+        String savePath = request.getRealPath("/static/upload").replaceAll("\\\\", "/");
         String prev = boardService.getRealFile(boardID);
         int result = boardService.delete(boardID);
         if (result == -1) {
@@ -73,7 +73,7 @@ public class BoardController {
     public ModelAndView BoardReply(HttpServletRequest request, ModelAndView mView) throws Exception {
         MultipartRequest multi = null;
         int fileMaxSize = 10 * 1024 * 1024;
-        String savePath = request.getRealPath("/upload").replaceAll("\\\\", "/");
+        String savePath = request.getRealPath("/static/upload").replaceAll("\\\\", "/");
 
         try {
 
@@ -136,7 +136,7 @@ public class BoardController {
 
         MultipartRequest multi = null;
         int fileMaxSize = 10 * 1024 * 1024;
-        String savePath = request.getRealPath("/upload").replaceAll("\\\\", "/");
+        String savePath = request.getRealPath("/static/upload").replaceAll("\\\\", "/");
 
         try {
 
@@ -216,7 +216,7 @@ public class BoardController {
 
         MultipartRequest multi = null;
         int fileMaxSize = 10 * 1024 * 1024;
-        String savePath = request.getRealPath("/upload").replaceAll("\\\\", "/");
+        String savePath = request.getRealPath("/static/upload").replaceAll("\\\\", "/");
 
         try {
 

@@ -3,6 +3,8 @@ package user.dao;
 import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 import user.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 import javax.naming.Context;
@@ -41,7 +43,7 @@ public class UserDAOImpl implements UserDAO{
 		sqlSession.selectOne("userMapper.updateOne", user);
 	}
 
-	public void updateProfile(HashMap map){
-		sqlSession.selectOne("userMapper.updateProfile", map);
+	public int updateProfile(HashMap map){
+		return sqlSession.update("userMapper.updateProfile", map);
 	}
 }

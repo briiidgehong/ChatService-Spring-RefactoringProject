@@ -104,8 +104,8 @@ public class UserServiceImpl implements UserService {
         map.put("userID", userID);
         map.put("userProfile", userProfile);
 
-        userDAO.updateProfile(map);
-        return 1;
+        int i = userDAO.updateProfile(map);
+        return userDAO.updateProfile(map);
     }
 
     @Override

@@ -16,7 +16,7 @@
 				data: {userID: userID},
 				success: function(result) {
 					if(result== -1){
-						$('#checkMessage').html('친구를 찾을수 없습니다. !');
+						$('#checkMessage').html('친구를 찾을수 없습니다 !');
 						$('#checkType').attr('class','modal-content panel-warning');
 						failFriend();
 					}else{
@@ -41,9 +41,9 @@
 					'<tbody>'+
 					'<tr>'+
 					'<td style="text-align: center;">'+
-					'<img class="media-object img-circle" style="max-width: 300px; margin: 0 auto;" src="' + userProfile+ '">' +
+					'<img class="media-object img-circle" style="max-width: 300px; margin: 0 auto;" src="/upload/' + userProfile+ '">' +
 					'<h3>' + findID + 
-					'</h3><a href="chat.jsp?toID=' + encodeURIComponent(findID) +
+					'</h3><a href="/chat?toID=' + encodeURIComponent(findID) +
 					'"class="btn btn-primary pull-right">'+
 					'메시지 보내기</a></td>'+
 					'<tr>' +
@@ -58,7 +58,7 @@
 		if(userID == null){
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "현재 로그인이 되어있지 않습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/index");
 			return;
 
 		}

@@ -9,5 +9,5 @@ public interface UserDAO {
     public int getCheckById(String userID);
     public void insertUser(UserDTO user);
     public void updateUser(UserDTO user);
-    public void updateProfile(HashMap map);
+    public int updateProfile(HashMap map);
 }

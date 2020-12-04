@@ -18,7 +18,9 @@
     </select>
 
     <select id="getList" parameterType="hashMap" resultType="boardDto">
-        SELECT * FROM BOARD WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam1} AND boardGroup <= (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam2} ORDER BY boardGroup DESC, boardSequence ASC
+        SELECT *
+        FROM BOARD
+        <![CDATA[WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam1} AND boardGroup <= (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam2} ORDER BY boardGroup DESC, boardSequence ASC]]>
     </select>
 
     <update id="hit" parameterType="String">
@@ -70,7 +72,7 @@
         WHERE boardGroup >= #{pageNumber}
     </select>
 
-    <select id="targetPage" parameterType="String" resultType="int">
+    <select id="targetPage" parameterType="int" resultType="int">
         SELECT COUNT(boardGroup)
         FROM BOARD
         WHERE boardGroup > #{pageNumber}

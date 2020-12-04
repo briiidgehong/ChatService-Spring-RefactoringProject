@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLDecoder"%>
 <%@ page import="user.dao.UserDAOImpl"%>
+<%@ page import="org.springframework.web.context.ContextLoader" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="user.service.UserServiceImpl" %>
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
 <head>
@@ -31,8 +34,11 @@
 			return;
 		}
 		*/
-		String fromProfile=new UserDAOImpl().getProfile(userID);
-		String toProfile=new UserDAOImpl().getProfile(toID);
+		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+		UserServiceImpl us =(UserServiceImpl)context.getBean(UserServiceImpl.class);
+
+		String fromProfile = us.getProfile(userID);
+		String toProfile = us.getProfile(toID);
 	%>
 	<script type="text/javascript">
 	
@@ -103,7 +109,7 @@
 									+ '<div class="col-lg-12">'
 									+ '<div class="media">'
 									+ '<a class="pull-left" href="#">'
-									+ '<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%=fromProfile%>" alt="">'              
+									+ '<img class="media-object img-circle" style="width: 30px; height: 30px;" src="/upload/<%=fromProfile%>" alt="">'
 									+ '</a>' + '<div class="media-body">'
 									+ '<h4 class="media-heading">' + chatName
 									+ '<span class="small pull-right">'
@@ -116,7 +122,7 @@
 								+ '<div class="col-lg-12">'
 								+ '<div class="media">'
 								+ '<a class="pull-left" href="#">'
-								+ '<img class="media-object img-circle" style="width: 30px; height: 30px;" src="<%=toProfile%>" alt="">'              
+								+ '<img class="media-object img-circle" style="width: 30px; height: 30px;" src="/upload/<%=toProfile%>" alt="">'
 								+ '</a>' + '<div class="media-body">'
 								+ '<h4 class="media-heading">' + chatName
 								+ '<span class="small pull-right">'
@@ -188,7 +194,7 @@
 		$(document).ready(function() {
 			chatListFunction('0');
 			getInfiniteChat();
-		}
+		})
 	</script>
 </body>
 </html>

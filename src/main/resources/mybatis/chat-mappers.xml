@@ -16,7 +16,7 @@
         WHERE ((fromID=#{fromID} AND toID=#{toID}) OR (fromID=#{toID} AND toID=#{fromID})) AND chatID > (SELECT MAX(chatID) - #{number} FROM CHAT WHERE (fromID =#{fromID} AND toID =#{toID}) OR (fromID =#{toID} AND toID =#{fromID})) ORDER BY chatTime
     </select>
 
-    <insert id="getListByRecent" parameterType="hashMap">
+    <insert id="submit" parameterType="hashMap">
         INSERT INTO CHAT
         VALUES (NULL, #{fromID}, #{toID}, #{chatContent}, NOW(), 0)
     </insert>

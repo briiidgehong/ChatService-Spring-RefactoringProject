@@ -3,6 +3,9 @@
 <%@ page import="board.dao.BoardDAOImpl" %>
 <%@ page import="board.dto.BoardDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.ContextLoader" %>
+<%@ page import="board.service.BoardServiceImpl" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
@@ -13,7 +16,7 @@
 		if(userID == null) {
 			session.setAttribute("messageType", "오류메시지");
 			session.setAttribute("messageContent","현재 로그인이 되어 있지 않습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/index");
 			return;
 		}
 
@@ -32,7 +35,9 @@
 			return;
 
 		}
-		ArrayList<BoardDTO> boardList = new BoardDAOImpl().getList(pageNumber);
+		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+		BoardServiceImpl us =(BoardServiceImpl)context.getBean(BoardServiceImpl.class);
+		ArrayList<BoardDTO> boardList = us.getList(pageNumber);
 	%>
 </head>
 <body>
@@ -94,13 +99,14 @@
 					}
 				%>
 					<tr>
-						<td colspan="5"><a href="boardWrite.jsp" class="btn btn-primary pull-right" type="submit">글쓰기</a>
+						<td colspan="5"><a href="/boardWrite" class="btn btn-primary pull-right" type="submit">글쓰기</a>
 						<ul class="pagination" style="margin: 0 auto;">
 
 				<%
 					int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1 ;
 					if(Integer.parseInt(pageNumber) % 10 == 0 ) startPage -= 10;
-					int targetPage = new BoardDAOImpl().targetPage(pageNumber);
+
+					int targetPage = us.targetPage(pageNumber);
 
 					if(startPage != 1) {
 				%>

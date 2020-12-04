@@ -66,6 +66,9 @@ public class ChatController {
             result.append("{\"value\": \"" + chatList.get(i).getToID() + "\"},");
             result.append("{\"value\": \"" + chatList.get(i).getChatContent() + "\"},");
             result.append("{\"value\": \"" + chatList.get(i).getChatTime() + "\"}]");
+
+            System.out.println(result.toString());
+
             if(i != chatList.size() -1) result.append(",");
         }
         result.append("], \"last\":\"" + chatList.get(chatList.size() -1).getChatID() + "\"}");

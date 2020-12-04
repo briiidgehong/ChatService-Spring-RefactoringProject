@@ -2,6 +2,7 @@ package user.controller;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import user.dao.UserDAOImpl;
+import user.dto.UserDTO;
 import user.service.UserService;
 
 import javax.servlet.ServletException;
@@ -34,13 +36,24 @@ public class UserController {
         System.out.println("user/find 들어옴");
         String userID = request.getParameter("userID");
         if (userID == null || userID.equals("")) {
-            response.getWriter().write(this.find(userID));
-        } else response.getWriter().write("-1");
-
+            response.getWriter().write("-1");
+        } else {
+            String userProfile = this.find(userID);
+            if(userProfile.equals("error"))
+                response.getWriter().write("-1");
+            else
+                response.getWriter().write(this.find(userID));
+        }
     }
 
     public String find(String userID) throws Exception {
         StringBuffer result = new StringBuffer("");
+        try {
+            String profile = userService.getProfile(userID);
+        } catch (Exception e) {
+            return "error";
+        }
+
         result.append("{\"userProfile\":\"" + userService.getProfile(userID) + "\"}");
         return result.toString();
     }
@@ -92,7 +105,7 @@ public class UserController {
     public void userProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
         MultipartRequest multi = null;
         int fileMaxSize = 10 * 1024 * 1024;
-        String savePath = request.getRealPath("/upload").replaceAll("\\\\", "/");
+        String savePath = request.getRealPath("/static/upload").replaceAll("\\\\", "/");
 
         try {
 
@@ -101,7 +114,7 @@ public class UserController {
         } catch (Exception e) {
             request.getSession().setAttribute("messageType", "오류메시지");
             request.getSession().setAttribute("messageContent", "파일 크기는 10MB 를 넘을 수 없습니다.");
-            response.sendRedirect("profileUpdate.jsp");
+            response.sendRedirect("/profileUpdate");
             return;
         }
 
@@ -110,7 +123,7 @@ public class UserController {
         if (!userID.equals((String) session.getAttribute("userID"))) {
             session.setAttribute("messageType", "오류메시지");
             session.setAttribute("messageContent", "접근할 수 없습니다.");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/index");
             return;
         }
 
@@ -131,7 +144,7 @@ public class UserController {
                 }
                 session.setAttribute("messageType", "오류메시지");
                 session.setAttribute("messageContent", "이미지 파일만 업로드 가능합니다.");
-                response.sendRedirect("profileUpdate.jsp");
+                response.sendRedirect("/profileUpdate");
                 return;
             }
 
@@ -140,7 +153,7 @@ public class UserController {
         userService.profile(userID, fileName);
         session.setAttribute("messageType", "성공 메시지");
         session.setAttribute("messageContent", "성공적으로 프로필이 변경되었습니다.");
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/index");
         return;
     }
 
@@ -158,10 +171,6 @@ public class UserController {
             response.getWriter().write(userService.registerCheck(userID) + ""); //사용자에게 결과를 반환 , 문자열 형태로 출력할수 있도록 하기위해 공백 문자열을 추가한다.
         }
     }
-
-
-
-
     //userRegister
     @RequestMapping(value = "/user/register", method = RequestMethod.POST) //@Responsebody @RestController
     public ModelAndView userRegister(HttpServletRequest request, ModelAndView mView) throws Exception {

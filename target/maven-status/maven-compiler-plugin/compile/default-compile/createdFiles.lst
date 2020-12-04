@@ -13,6 +13,7 @@ board\controller\BoardController.class
 user\dto\UserDTO.class
 user\dao\UserDAOImpl.class
 user\service\UserService.class
+board\dao\BoardDAO.class
 board\dao\BoardDAOImpl.class
 board\service\BoardServiceImpl.class
 chat\service\ChatService.class

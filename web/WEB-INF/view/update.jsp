@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="user.dto.UserDTO" %>
 <%@ page import="user.dao.UserDAOImpl" %>
+<%@ page import="org.springframework.context.ApplicationContext" %>
+<%@ page import="user.service.UserServiceImpl" %>
+<%@ page import="org.springframework.context.annotation.AnnotationConfigApplicationContext" %>
+<%@ page import="org.springframework.test.context.support.AnnotationConfigContextLoader" %>
+<%@ page import="org.springframework.context.support.StaticApplicationContext" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.ContextLoader" %>
 
 
 <!DOCTYPE html> <!--html5를 따른다. -->
@@ -15,11 +22,14 @@
 		if(userID == null) {
 			session.setAttribute("messageType", "오류메시지");
 			session.setAttribute("messageContent","현재 로그인이 되어 있지 않습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("index");
 			return;
 		}
 
-		UserDTO user = new UserDAOImpl().getUser(userID);
+		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+		UserServiceImpl us =(UserServiceImpl)context.getBean(UserServiceImpl.class);
+
+		UserDTO user = us.getUser(userID);
 	%>
 	<script type="text/javascript">
 		function passwordCheckFunction() {
