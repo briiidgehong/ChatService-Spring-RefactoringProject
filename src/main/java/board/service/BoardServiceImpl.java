@@ -64,7 +64,7 @@ public class BoardServiceImpl implements BoardService{
         int pageParam2 = (Integer.parseInt(pageNumber) - 1) * 10;
 
         map.put("pageParam1", pageParam1);
-        map.put("pageParam1", pageParam2);
+        map.put("pageParam2", pageParam2);
 
         List<BoardDTO> list = boardDAO.getList(map);
 

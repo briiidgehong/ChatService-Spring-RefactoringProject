@@ -76,4 +76,24 @@ public class IndexController{
         return "logoutAction";
     }
 
+    @RequestMapping("/boardShow")
+    public String boardShowforwarding() {
+        System.out.println("boardShow 페이지");
+        return "boardShow";
+    }
+
+
+    @RequestMapping("/boardReply")
+    public String boardReplyforwarding() {
+        System.out.println("boardReply 페이지");
+        return "boardReply";
+    }
+
+
+    @RequestMapping("/boardDownload")
+    public String boardDownloadforwarding() {
+        System.out.println("boardDownload 페이지");
+        return "boardDownload";
+    }
+
 }

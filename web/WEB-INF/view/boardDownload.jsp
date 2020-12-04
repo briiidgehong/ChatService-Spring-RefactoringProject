@@ -6,6 +6,9 @@
 <%@ page import="java.lang.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.net.*" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.ContextLoader" %>
+<%@ page import="board.service.BoardServiceImpl" %>
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
 <head>
@@ -22,16 +25,19 @@
 		}
 		
 		String root = request.getSession().getServletContext().getRealPath("/");
-		String savePath = root + "upload";
+		String savePath = root + "/static/upload";
 		String fileName = "";
 		String realFile = "";
-		BoardDAOImpl boardDAO = new BoardDAOImpl();
-		fileName = boardDAO.getFile(boardID);
-		realFile = boardDAO.getRealFile(boardID);
+
+		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+		BoardServiceImpl bs =(BoardServiceImpl)context.getBean(BoardServiceImpl.class);
+
+		fileName = bs.getFile(boardID);
+		realFile = bs.getRealFile(boardID);
 		if(fileName.equals("") || realFile.equals("")) {
 			session.setAttribute("messageType", "오류메시지");
 			session.setAttribute("messageContent","접근할 수 없습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/index");
 			return;
 		}
 

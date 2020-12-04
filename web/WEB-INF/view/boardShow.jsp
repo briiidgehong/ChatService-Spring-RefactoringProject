@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="board.dao.BoardDAOImpl" %>
 <%@ page import="board.dto.BoardDTO" %>
+<%@ page import="org.springframework.web.context.ContextLoader" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="board.service.BoardServiceImpl" %>
 
 <!DOCTYPE html> <!--html5를 따른다. -->
 <html>
@@ -28,8 +31,10 @@
 			return;
 		}
 
-		BoardDAOImpl boardDAO = new BoardDAOImpl();
-		BoardDTO board = boardDAO.getBoard(boardID);
+		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+		BoardServiceImpl bs =(BoardServiceImpl)context.getBean(BoardServiceImpl.class);
+
+		BoardDTO board = bs.getBoard(boardID);
 		if(board.getBoardAvailable() == 0) {
 			session.setAttribute("messageType", "오류메시지");
 			session.setAttribute("messageContent","삭제된 게시물입니다.");
@@ -37,8 +42,9 @@
 			return;
 		}
 
-		boardDAO.hit(boardID);
+		bs.hit(boardID);
 	%>
+</head>
 </head>
 <body>
 	<%@include file="/static/body-h.jsp"%><!-- body-h -->
@@ -73,7 +79,7 @@
 				
 				<tr>
 					<td style="background-color: #fafafa; color: #000000; width: 80px;"><h5>첨부파일</h5></td>
-					<td colspan="3"><h5> <a href="boardDownload.jsp?boardID=<%= board.getBoardID() %>"> <%= board.getBoardFile() %></a></h5></td>
+					<td colspan="3"><h5> <a href="/boardDownload?boardID=<%= board.getBoardID() %>"> <%= board.getBoardFile() %></a></h5></td>
 				</tr>
 
 				
@@ -84,8 +90,8 @@
 					<td colspan="5" style="text-align: right;">
 					
 					
-					<a href="boardView.jsp" class="btn btn-primary">목록</a>
-					<a href="boardReply.jsp?boardID=<%= board.getBoardID() %>" class="btn btn-primary">답변</a>
+					<a href="/boardView" class="btn btn-primary">목록</a>
+					<a href="/boardReply?boardID=<%= board.getBoardID() %>" class="btn btn-primary">답변</a>
 					<%
 						if(userID.equals(board.getUserID())) {
 					%>

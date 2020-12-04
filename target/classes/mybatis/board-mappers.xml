@@ -20,7 +20,7 @@
     <select id="getList" parameterType="hashMap" resultType="boardDto">
         SELECT *
         FROM BOARD
-        <![CDATA[WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam1} AND boardGroup <= (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam2} ORDER BY boardGroup DESC, boardSequence ASC]]>
+        WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam1} AND boardGroup <![CDATA[<=]]> (SELECT MAX(boardGroup) FROM BOARD) - #{pageParam2} ORDER BY boardGroup DESC, boardSequence ASC
     </select>
 
     <update id="hit" parameterType="String">

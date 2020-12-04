@@ -68,7 +68,7 @@
 				%>
 					<tr>
 						<td><%= board.getBoardID() %></td>
-						<td style="text-align: left;"><a href="boardShow.jsp?boardID=<%= board.getBoardID()%>">
+						<td style="text-align: left;"><a href="/boardShow?boardID=<%= board.getBoardID()%>">
 
 						<%
 							for (int j=0; j < board.getBoardLevel(); j++) {
