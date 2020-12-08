@@ -26,9 +26,10 @@
 			return;
 		}
 
+
+
 		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
 		UserServiceImpl us =(UserServiceImpl)context.getBean(UserServiceImpl.class);
-
 		UserDTO user = us.getUser(userID);
 	%>
 	<script type="text/javascript">
@@ -51,7 +52,7 @@
 
 
 	<div class="container">
-			<form method="post" action="./UserUpdateServlet">
+			<form method="post" action="/user/update">
 				<table class="table table=bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>

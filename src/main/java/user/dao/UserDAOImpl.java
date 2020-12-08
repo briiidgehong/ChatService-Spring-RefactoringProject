@@ -40,7 +40,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	public void updateUser(UserDTO user){
-		sqlSession.selectOne("userMapper.updateOne", user);
+		sqlSession.selectOne("userMapper.updateUser", user);
 	}
 
 	public int updateProfile(HashMap map){

@@ -240,21 +240,21 @@ public class UserController {
                 userEmail == null || userEmail.equals("")) { //프로필 사진 업데이트는 사용자 선택
             request.getSession().setAttribute("messageType", "오류메시지");
             request.getSession().setAttribute("messageContent", "모든 내용을 입력하세요.");
-            response.sendRedirect("update.jsp");
+            response.sendRedirect("/update");
             return;
         }
 
         if (!userID.equals((String) session.getAttribute("userID"))) {
             session.setAttribute("messageType", "오류메시지");
             session.setAttribute("messageContent", "접근할 수 없습니다.");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/index");
             return;
         }
 
         if (!userPassword1.equals(userPassword2)) {
             request.getSession().setAttribute("messageType", "오류메시지");
             request.getSession().setAttribute("messageContent", "비밀번호가 다릅니다.");
-            response.sendRedirect("update.jsp");
+            response.sendRedirect("/update");
             return;
         }
 
@@ -263,11 +263,11 @@ public class UserController {
             request.getSession().setAttribute("userID", userID);
             request.getSession().setAttribute("messageType", "성공메시지");
             request.getSession().setAttribute("messageContent", "회원 정보 수정에 성공하였습니다.");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/index");
         } else {
             request.getSession().setAttribute("messageType", "오류메시지");
             request.getSession().setAttribute("messageContent", "데이터베이스 오류가 발생했습니다.");
-            response.sendRedirect("update.jsp");
+            response.sendRedirect("/update");
         }
     }
 }
